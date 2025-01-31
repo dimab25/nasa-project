@@ -1,0 +1,52 @@
+#root {
+  
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+ /* Planets */
+.planetsContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.planetsContainer div {
+  display: flex;
+  justify-content: right;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* Multimedia */
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 10px;
+}
+
+/* Picture of the day */
+.dateInputDiv {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.dayPictureContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MorePicsOfDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
