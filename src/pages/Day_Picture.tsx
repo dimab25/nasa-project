@@ -1,27 +1,20 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import DateInput from "../component/DateInput";
 import PicturesOfTheDay from "../component/PicturesOfTheDay";
+import { Image } from "react-bootstrap";
+import { Link } from "react-router";
+import { Picture } from "../types/customTypes";
 
-interface Picture {
-  copyright: string;
-  date: string;
-  explanation: string;
-  hdurl: string;
-  media_type: string;
-  service_version: string;
-  title: string;
-  url: string;
-}
+
 
 function Day_Picture() {
-  const API_Key = import.meta.env.NASA_API;
-  
+  const api_key = import.meta.env.VITE_NASA_API;
 
   const [choosenDate, setChoosenDate] = useState("");
 
-  const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_Key}&date=${choosenDate}`;
+  const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${choosenDate}`;
 
-  const [pictures, setPictures] = useState <Picture|null>(null);
+  const [pictures, setPictures] = useState<Picture | null>(null);
 
   const getPictureOfTheDay = () => {
     fetch(nasaUrl)
@@ -56,11 +49,21 @@ function Day_Picture() {
           <DateInput handleInputDate={handleInputDate} />
         </div>
         <div className="dayPictureContainer">
-          <img src={pictures && pictures.hdurl} style={{ width: "30rem" }} />
-
-          <p> {pictures && pictures.title} </p>
+         {pictures && pictures?.media_type === "image" ? (
+           <Link to={`/detailsDayPicture/?date=${pictures && pictures.date}`}> <Image src={pictures.url} style={{ width: "900px" }} fluid /></Link>
+          ) : (
+            <iframe
+              width="900"
+              height="700"
+              src={pictures?.url}
+              title="YouTube video player"
+            ></iframe>
+          )}
+          
+          <Link to={`/detailsDayPicture/?date=${pictures && pictures.date}`}>
+          <p>{pictures && pictures.title} </p></Link>
           <p>{pictures && pictures.date}</p>
-          <p>{pictures && pictures.explanation}</p>
+          {/* <p>{pictures && pictures.explanation}</p> */}
         </div>
         <PicturesOfTheDay />
       </div>

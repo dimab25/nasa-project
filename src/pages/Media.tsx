@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import Search from "../component/Search";
+import { Image } from "react-bootstrap";
+import { Link } from "react-router";
 
 interface Item {
   href: string;
@@ -33,8 +35,6 @@ interface Link {
 function Media() {
   const [itemImage, setItemImage] = useState<Item | null>(null);
 
- 
-
   const [keyword, setKeyword] = useState("earth");
 
   const searchUrl = `https://images-api.nasa.gov/search?q=${keyword}&media_type=image`;
@@ -57,10 +57,10 @@ function Media() {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
-    
+
     setKeyword(e.target.value);
   };
-  
+
   // useEffect hook close to the return
   useEffect(() => {
     fetchSearchImage();
@@ -68,26 +68,25 @@ function Media() {
 
   return (
     <>
-      <div>
-        <Search handleInputChange={handleInputChange} />
-        <div className="imageContainer">
-          {itemImage &&
-            itemImage.map((item: Item) => (
-              <div>
-                {/* {item.links.map((single, index)=> (<img key={index} src= {single.href} /> ))} */}
-
-                {/* {item.data.map((singleInfo )=> (<div> {singleInfo.title}</div>  ))} */}
-
-                {item.links.length > 0 && (
-                  <img
-                    src={item.links[0].href}
+      <Search handleInputChange={handleInputChange} />
+      <div className="containerMedia">
+        {itemImage &&
+          itemImage.map((item: Item) => (
+            <div>
+              {item.links.length > 0 && (
+                <p>
+                  <Link to={`/detailsMedia/?id=${item.data[0].nasa_id}`}> 
+                  <Image
+                    src={item.links[1].href}
                     alt=""
-                    style={{ width: "300px" }}
+                    style={{ width: "700px" }}
+                    fluid
                   />
-                )}
-              </div>
-            ))}
-        </div>
+                  </Link>
+                </p>
+              )}
+            </div>
+          ))}
       </div>
     </>
   );

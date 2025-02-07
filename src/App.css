@@ -50,3 +50,53 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+/* Navbar */
+
+/* Pictures of the day  */
+
+
+@media screen and (max-width: 449px ){
+  .containerImages {
+    column-count: 1;
+  }
+}
+@media screen and (min-width: 450px ){
+  .containerImages {
+    column-count: 2;
+
+  }
+}
+
+@media screen and (min-width: 1000px ){
+  .containerImages {
+    column-count: 3;
+
+  }
+}
+  /* Media */
+  @media screen and (max-width: 449px ) {
+    .containerMedia {
+    column-count: 2;}
+  }
+  
+  @media screen and (min-width: 450px ) {
+    .containerMedia {
+    column-count: 3;}
+  }
+
+
+@media screen and (min-width: 1000px ) {
+  .containerMedia {
+  column-count: 4;}
+}
+@media screen and (min-width: 1200px ) {
+  .containerMedia {
+  column-count: 5;}
+}
+
+
+img.img-fluid {
+  border-radius: 30px;
+}
+

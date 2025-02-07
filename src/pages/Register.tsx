@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
@@ -26,9 +26,9 @@ register (email, password)
     <div>
       <h2>Register</h2>
       <div>
-        <form onSubmit={handleSubmitRegister}>
-          <div className="label-input">
-            <label htmlFor="email">E-Mail</label>
+        <Form onSubmit={handleSubmitRegister}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label htmlFor="email">E-Mail</Form.Label>
             <input
               type="text"
               name="email"
@@ -36,7 +36,7 @@ register (email, password)
               value={email}
               onChange={handleEmailChange}
             />
-          </div>
+          </Form.Group>
           <div className="label-input">
             <label htmlFor="password">Password</label>
             <input
@@ -47,8 +47,8 @@ register (email, password)
               onChange={handlePasswordChange}
             />
           </div>
-          <Button type="submit">Register</Button>
-        </form>
+          <Button variant="outline-success" type="submit">Register</Button>
+        </Form>
       </div>
       <Link to={"/login"}>Do you already have an account? Please loggin</Link>
     </div>

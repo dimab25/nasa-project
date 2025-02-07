@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Image } from "react-bootstrap";
 import { Link } from "react-router";
 
 interface Picture {
@@ -13,9 +14,9 @@ interface Picture {
 }
 
 function PicturesOfTheDay() {
-  const API_Key = import.meta.env.NASA_API;
+  const api_key= import.meta.env.VITE_NASA_API;
 
-  const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_Key}&start_date=2024-12-23&end_date=2025-01-08`;
+  const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&start_date=2024-12-23&end_date=2025-01-04`;
 
   const [pictures, setPictures] = useState<Picture | null>(null);
 
@@ -42,13 +43,18 @@ function PicturesOfTheDay() {
     <>
       <div>More pictures of the day </div>
       <div className="MorePicsOfDay">
-        {pictures &&
-          pictures.map((file: Picture) => (
-            <>
-            <Link to={`/detailsDayPicture/?${file.date}`}>
-              <img src={file.url} alt="" style={{ width: "400px" }} /></Link>
-            </>
-          ))}
+        
+         <div className="containerImages">
+              {pictures &&
+                pictures.map((file: Picture, index: number) => (
+                  <>
+                    <Link to={`/detailsDayPicture/?date=${file.date}`} key={index}>
+                      <p><Image src={file.url} alt="" style={{width: "700px"}} fluid /></p>
+                    </Link>
+                  </>
+                ))}
+          </div>
+        
       </div>
     </>
   );

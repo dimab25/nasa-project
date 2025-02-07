@@ -1,15 +1,15 @@
-import { Picture } from "../types/customTypes";
+
 import { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 
-function DetailsDayPictures() {
+function DetailsMedia() {
   const queryParameters = new URLSearchParams(window.location.search);
   const dateQuery = queryParameters.get("date");
   console.log(dateQuery);
 
-  const api_key = import.meta.env.VITE_NASA_API;
+  const nasa_id = "GRC-2016-C-06992"
 
-  const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${dateQuery}`;
+  const nasaUrl = `https://images-api.nasa.gov/search?q=${nasa_id}`;
 
   console.log(nasaUrl);
   const [pictures, setPictures] = useState<Picture | null>(null);
@@ -35,7 +35,7 @@ function DetailsDayPictures() {
 
   return (
     <>
-      <div>DetailsDayPictures</div>
+      <div>DetailsMedia</div>
       {pictures && <p>{pictures.explanation}</p>}
       {pictures && <p>{pictures.date}</p>}
 
@@ -50,4 +50,4 @@ function DetailsDayPictures() {
   );
 }
 
-export default DetailsDayPictures;
+export default DetailsMedia;

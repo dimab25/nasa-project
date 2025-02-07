@@ -3,10 +3,8 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
-
 function Login() {
-  const {login} =useContext (AuthContext)
-
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,11 +14,11 @@ function Login() {
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const handleSubmitRegister = (e: FormEvent<HTMLFormElement>)=>{
+  const handleSubmitRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-// console.log("email,password", email, password);
-login (email, password)
-  }
+    // console.log("email,password", email, password);
+    login(email, password);
+  };
 
   return (
     <div>
@@ -47,10 +45,10 @@ login (email, password)
               onChange={handlePasswordChange}
             />
           </div>
-          <Button type="submit">Login</Button>
+          <Button variant="outline-success" type="submit">Login</Button>
         </form>
       </div>
-      <Link to={"/login"}>Do you already have an account? Please loggin</Link>
+      <Link to={"/register"}>No account yet? Please register</Link>
     </div>
   );
 }
