@@ -2,6 +2,11 @@ import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { collection, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
+import AddMessages from "../component/AddMessages";
+// import { MessageType } from "../types/customTypes";
+
+// import AddMessages from "../component/AddMessages";
+
 type MessageType = {
   author: string;
   text: string;
@@ -20,7 +25,11 @@ function Chat() {
       messagesArray.push(message);
       setMessages(messagesArray);
     });
-   
+  };
+
+  const formatDate = (seconds:number) => {
+    const formatedDate = new Date(seconds*1000).toLocaleString();
+    return formatedDate;
   };
 
   console.log(messages);
@@ -36,9 +45,13 @@ function Chat() {
           {messages &&
             messages.map((message) => {
               return (
-                <div className="MessagesInfo" style={{width: "300px"}}>
+                <div
+                  className="MessagesInfo"
+                  style={{ width: "300px", background: "lightgreen" }}
+                >
                   <p>{message.author}</p>
                   <p>{message.text}</p>
+                  <p>{formatDate(message.date.seconds)}</p>
                 </div>
               );
             })}
@@ -51,6 +64,7 @@ function Chat() {
             >
               <Form.Control as="textarea" placeholder="message" />
             </FloatingLabel>
+            <AddMessages />
             <Button variant="outline-success" type="submit">
               Save Message
             </Button>

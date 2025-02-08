@@ -3,34 +3,7 @@ import Search from "../component/Search";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router";
 
-interface Item {
-  href: string;
-  data: Daum[];
-  links: Link[];
-}
 
-interface Daum {
-  center: string;
-  date_created: string;
-  description: string;
-  description_508?: string;
-  keywords: string[];
-  media_type: string;
-  nasa_id: string;
-  secondary_creator?: string;
-  title: string;
-  album?: string[];
-  location?: string;
-}
-
-interface Link {
-  href: string;
-  rel: string;
-  render: string;
-  width?: number;
-  size?: number;
-  height?: number;
-}
 
 function Media() {
   const [itemImage, setItemImage] = useState<Item | null>(null);

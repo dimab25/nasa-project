@@ -34,10 +34,12 @@ function Planets() {
       <div><img src={uranus} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
          <p>Informations</p>
          <p>Details</p></div>
-      <div><img src={pluto} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
+    <div><img src={pluto} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
          <p>Informations</p>
          <p>Details</p></div>
-    
+
+         <iframe src="https://eyes.nasa.gov/apps/solar-system/?featured=false&shareButton=false&menu=false&hideFullScreenToggle=true" style={{height: "500px"}}></iframe>
+      
     </div>
 
   )
