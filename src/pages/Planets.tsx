@@ -22,21 +22,16 @@ function Planets() {
       <div className="planetsDiv">
          <img src={mercury} alt="" style={{ width: "300px" }}/>
          <h6>Titel</h6>
-         <p>Informations</p>
-         <p>Details</p>
+        
       </div>
       <div> <img src={earth} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
-         <p>Informations</p>
-         <p>Details</p></div>
+         </div>
       <div><img src={venus} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
-         <p>Informations</p>
-         <p>Details</p></div>
+         </div>
       <div><img src={uranus} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
-         <p>Informations</p>
-         <p>Details</p></div>
+         </div>
     <div><img src={pluto} alt="" style={{ width: "300px" }}/><h6>Titel</h6>
-         <p>Informations</p>
-         <p>Details</p></div>
+         </div>
 
          <iframe src="https://eyes.nasa.gov/apps/solar-system/?featured=false&shareButton=false&menu=false&hideFullScreenToggle=true" style={{height: "500px"}}></iframe>
       

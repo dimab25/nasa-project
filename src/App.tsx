@@ -27,6 +27,7 @@ import Neptune from "./pages/Solar-System/Neptune";
 import Saturn from "./pages/Solar-System/Saturn";
 import Uranus from "./pages/Solar-System/Uranus";
 import Venus from "./pages/Solar-System/Venus";
+import Profile from "./pages/Profile";
 
 const Root = () => {
   return (
@@ -72,6 +73,7 @@ function App() {
             />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </BrowserRouter>

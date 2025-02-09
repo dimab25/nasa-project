@@ -43,12 +43,15 @@ function NavBar() {
        
           
           <NavDropdown title="User" id="navbarScrollingDropdown">
-          <NavDropdown.Item as={Link} to={"/register"}>Register</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>
+          {user? null:<NavDropdown.Item as={Link} to={"/register"}>Register</NavDropdown.Item>}
+          {user ? <NavDropdown.Item as={Link} to={"/profile"}>Profile</NavDropdown.Item>: null}
+          {user? null: <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>}
+          {user ? <NavDropdown.Item onClick={logout}>Sign out</NavDropdown.Item>: null}
+          {user?  <>
           <NavDropdown.Divider />
-          {user?  <Navbar.Text>
-                Signed in as: {user.email} 
-              </Navbar.Text> : <Navbar.Text>Please sign in</Navbar.Text>
+          <Navbar.Text>
+                User: {user.email} 
+              </Navbar.Text></>: null
               }
          
           </NavDropdown>
