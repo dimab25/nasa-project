@@ -56,7 +56,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const user = userCredential.user;
      
       
-      console.log("user registered", user);
+      // console.log("user registered", user);
     } catch (err) {
       const error = err as Error;
       console.log("error", error.message);
@@ -72,7 +72,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         const id= user.uid
         if (email && id) {
           setUser({email,id})
+              // return "login sucee"
         }
+    
         else {throw new Error("User information not found")}
         console.log("user login", user);
         // ...
@@ -99,8 +101,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         }
         else {throw new Error("User information not found")}
 
-        console.log("user is logged in", user.email);
-        console.log("id", id);
+        // console.log("user is logged in", user.email);
+        // console.log("id", id);
        
       } else {
         // User is signed out

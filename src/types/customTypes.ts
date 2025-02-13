@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 
 
 export type User = {
@@ -97,6 +98,60 @@ export interface Picture {
     volExponent: number
   }
 
- 
+ export type MessageType = {
+   author: string;
+   text: string;
+   date: Timestamp;
+   id: string;
+ };
 
- 
+//  Details-Media
+
+export interface Root {
+  collection: Collection;
+}
+
+export interface Collection {
+  version: string;
+  href: string;
+  items: Item[];
+  metadata: Metadata;
+}
+
+export interface Item {
+  href: string;
+  data: Daum[];
+  links: Link[];
+}
+
+export interface Daum {
+  center: string;
+  date_created: string;
+  description: string;
+  description_508: string;
+  keywords: string[];
+  media_type: string;
+  nasa_id: string;
+  title: string;
+}
+
+export interface Link {
+  href: string;
+  rel: string;
+  render: string;
+  width: number;
+  size: number;
+  height: number;
+}
+
+export interface Metadata {
+  total_hits: number;
+}
+
+
+// Liked PICTURE OF THE DAY 
+export type ImageDates = {
+  author: string;
+   date: string;
+   id: string;
+}

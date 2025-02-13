@@ -14,8 +14,10 @@ const DelayedLink = () => {
 
     return () => clearTimeout(timeoutId);
   }, []);
-
   // console.log(delay);
+  return(
+    <div></div>
+  )
 };
 
 function Login() {
@@ -30,13 +32,16 @@ function Login() {
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const handleSubmitRegister = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmitRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log("email,password", email, password);
-    login(email, password);
+    const loginOperation = await login(email, password);
+    // if(loginOperation === "ok") {
+    //   delayedRedirect()
+    // }
+
   };
 
-  
   return (
     <div>
       <h2>Login</h2>

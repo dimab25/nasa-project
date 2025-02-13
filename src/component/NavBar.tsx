@@ -8,10 +8,10 @@ import { AuthContext } from "../context/AuthContext";
 
 function NavBar() {
   // 9. Subscribe to the context and use the elements available
-  const { user, login, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark" sticky="top"  >
+    <Navbar expand="xl" className="bg-body-tertiary" data-bs-theme="dark" sticky="top"  >
       <Container fluid>
         
           <Navbar.Brand as={Link} to={"/"}>Nasa</Navbar.Brand>
@@ -19,7 +19,6 @@ function NavBar() {
           <Navbar.Collapse id="navbarScroll">
 
         <Nav className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '200px' }}
             navbarScroll>
           <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
           <NavDropdown title="Solar System" id="navbarScrollingDropdown">
@@ -38,7 +37,7 @@ function NavBar() {
 
           <Nav.Link as={Link} to={"/chat"}>Chat</Nav.Link>
          
-          <Nav.Link as={Link} to={"/day"}>Picture of the Day</Nav.Link>
+          <Nav.Link as={Link} to={"/day"}>Image of the Day</Nav.Link>
           <Nav.Link as={Link} to={"/media"}>Multimedia</Nav.Link>
        
           
@@ -71,7 +70,7 @@ function NavBar() {
 
 export default NavBar;
 
-console.log("Start");
+
 
 
 
