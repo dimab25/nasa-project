@@ -95,6 +95,7 @@ function Chat() {
     addInformation();
   };
 
+  // DELETE MESSAGES
   const deleteMessage = async (props: string) => {
     await deleteDoc(doc(db, "chat", props));
     console.log("works bitch");

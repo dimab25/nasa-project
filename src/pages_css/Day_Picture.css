@@ -8,3 +8,42 @@ justify-content: space-between;
 width: 700px;
 
 }
+
+/* Picture of the day */
+.dateInputDiv {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  .dayPictureContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+  
+  /* .MorePicsOfDay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  } */
+
+
+@media screen and (max-width: 449px) {
+    .containerImages {
+      column-count: 1;
+    }
+  }
+  @media screen and (min-width: 450px) {
+    .containerImages {
+      column-count: 2;
+    }
+  }
+  
+  @media screen and (min-width: 1000px) {
+    .containerImages {
+      column-count: 3;
+    }
+  }

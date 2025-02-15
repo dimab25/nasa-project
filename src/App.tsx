@@ -19,7 +19,7 @@ import { db } from "./config/firebaseConfig";
 import Chat from "./pages/Chat";
 import DetailsMedia from "./pages/DetailsMedia";
 import EarthPage from "./pages/Solar-System/Earth";
-import Planets from "./pages/Planets";
+import About from "./pages/About";
 import Jupiter from "./pages/Solar-System/Jupiter";
 import Mars from "./pages/Solar-System/Mars";
 import Mercury from "./pages/Solar-System/Mercury";
@@ -28,6 +28,7 @@ import Saturn from "./pages/Solar-System/Saturn";
 import Uranus from "./pages/Solar-System/Uranus";
 import Venus from "./pages/Solar-System/Venus";
 import Profile from "./pages/Profile";
+import DwarfPlanets from "./pages/DwarfPlanets";
 
 const Root = () => {
   return (
@@ -55,7 +56,7 @@ function App() {
               <Route path="/media" element={<Media />} />
               <Route path="/day" element={<Day_Picture />} />
               {/* SolarSystem */}
-              <Route path="/planets" element={<Planets />} />
+              <Route path="/about" element={<About />} />
               <Route path="/earth" element={<EarthPage />} />
               <Route path="/jupiter" element={<Jupiter />} />
               <Route path="/mars" element={<Mars />} />
@@ -64,6 +65,7 @@ function App() {
               <Route path="/saturn" element={<Saturn />} />
               <Route path="/uranus" element={<Uranus />} />
               <Route path="/venus" element={<Venus />} />
+              <Route path="/dwarf" element={<DwarfPlanets />} />
 
               <Route path="/chat" element={<Chat />} />
               <Route path="/detailsDayPicture"

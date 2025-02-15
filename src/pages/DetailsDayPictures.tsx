@@ -1,8 +1,8 @@
-import { Picture } from "../types/customTypes";
+import { ImageDates, Picture } from "../types/customTypes";
 import { useContext, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 // import AddLike from "../component/AddLike";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
 
@@ -60,15 +60,54 @@ const handleLike = (props: string |undefined)=>{
   addInformation (imageId)
 }
 
+//  GET INFORMATION FROM DB
+ 
+
+  const [imageIDs, setImageIDs] = useState<ImageDates[] | null>(null);
+
+  const getImageIds = async () => {
+    const querySnapshot = await getDocs(collection(db, "likes"));
+    const imageIDArray: ImageDates[] = [];
+    querySnapshot.forEach((doc) => {
+      // console.log(`${doc.id} => ${doc.data().Text}`);
+      const date = { ...doc.data(), id: doc.id } as ImageDates;
+      imageIDArray.push(date);
+
+      setImageIDs(imageIDArray);
+    });
+  };
+
+  console.log("imageIDs", imageIDs);
+
+  // filter the Likes COLLECTION
+  const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
+    if (user && file.author.includes(user?.email)) return file.date;
+  });
+  console.log("", savedImagesArrayUndefined);
+  const savedImagesArray = savedImagesArrayUndefined?.filter(
+    (x) => x !== undefined
+  );
+  console.log(savedImagesArray);
+
+
+
+
 
   useEffect(() => {
     getPictureOfTheDay();
+    getImageIds()
   }, []);
 
   return (
     <>
       <div>DetailsDayPictures</div>  
-      <button onClick={()=>handleLike(pictures?.date)}>Like</button> 
+      <button 
+      className={
+        savedImagesArray?.includes(pictures?.date)
+          ? "savedPicture"
+          : "unsavedPicture"
+      }
+      onClick={()=>handleLike(pictures?.date)}>Like</button> 
        {pictures && pictures.media_type==="image" ? <Image src={pictures.url} alt="Image" style={{width: "1000px"}} fluid/> : <iframe
               width="900"
               height="700"

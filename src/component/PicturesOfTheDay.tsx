@@ -1,22 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { Link } from "react-router";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { ImageDates } from "../types/customTypes";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { IoMdAdd } from "react-icons/io";
+import { FaUserAstronaut } from "react-icons/fa";
+import { ImageDates, Picture } from "../types/customTypes";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
-
-interface Picture {
-  copyright: string;
-  date: string;
-  explanation: string;
-  hdurl: string;
-  media_type: string;
-  service_version: string;
-  title: string;
-  url: string;
-}
 
 function PicturesOfTheDay() {
   const { user } = useContext(AuthContext);
@@ -43,35 +39,36 @@ function PicturesOfTheDay() {
   };
 
   // ADDING INFORMATION TO THE DB
-  // const { user } = useContext(AuthContext);
- 
-
-  const addInformation = async (imageDate: string | undefined) => {
+  const addInformation = async (imageObject) => {
     try {
-
+      const imageDate = imageObject.date;
+      const imageUrl = imageObject.url;
       const author = user?.email;
+
       const docRef = await addDoc(collection(db, "likes"), {
         date: imageDate,
         author: author,
+        url: imageUrl,
       });
       console.log("Document written with ID: ", docRef.id);
       // console.log("db", db);
       // setNewInformation(docRef.id);
+      if (docRef) getImageIds();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
 
-  const handleMark = (props: string | undefined) => {
-    const imageDate = props;
-    console.log("imageDate ", imageDate);
-    addInformation(imageDate);
+  const handleMark = (props: {}) => {
+    const imageObject = props as string;
+    console.log("imageDate", imageObject);
+
+    addInformation(imageObject);
   };
 
   //  GET INFORMATION FROM DB
- 
-
   const [imageIDs, setImageIDs] = useState<ImageDates[] | null>(null);
+  console.log("imageid", imageIDs);
 
   const getImageIds = async () => {
     const querySnapshot = await getDocs(collection(db, "likes"));
@@ -84,10 +81,9 @@ function PicturesOfTheDay() {
       setImageIDs(imageIDArray);
     });
   };
+  // console.log("imageIDs", imageIDs);
 
-  console.log("imageIDs", imageIDs);
-
-  // filter the Likes COLLECTION
+  // filter the COLLECTION to display the Images i marked as liked
   const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
     if (user && file.author.includes(user?.email)) return file.date;
   });
@@ -95,7 +91,47 @@ function PicturesOfTheDay() {
   const savedImagesArray = savedImagesArrayUndefined?.filter(
     (x) => x !== undefined
   );
-  console.log(savedImagesArray);
+  console.log("saved images array", savedImagesArray);
+
+  // DELETE LIKES
+  const deleteLike = async (props) => {
+    await deleteDoc(doc(db, "likes", props));
+    console.log(doc(db, "likes", props));
+    console.log("works bitch");
+    console.log("propsId", props);
+    getImageIds();
+  };
+
+  // DELETE BUTTON FOR LIKED IMAGES
+  const handleDelete = (props: string | undefined) => {
+    const testX = props as string;
+
+    // console.log("testX is a date string", testX);
+
+    // filter the whole COLLECTION for the LikedImageID
+    const savedIDsArrayUndefined = imageIDs?.map((file: ImageDates) => {
+      if (user && file.author.includes(user?.email)) return file;
+    });
+    // console.log("testingconst", savedIDsArrayUndefined);
+
+    const savedIDsArray = savedIDsArrayUndefined?.filter(
+      (x) => x !== undefined
+    );
+    // console.log("testingconst", savedIDsArray);
+
+    const singleIdUndefined = savedIDsArray?.map((file) => {
+      if (file.date == testX) {
+        return file.id;
+      }
+    });
+    // console.log(singleIdUndefined);
+    const singleID = singleIdUndefined?.filter((x) => x !== undefined);
+    console.log("singleid", singleID);
+    const realSingleID = singleID?.toString();
+    console.log(realSingleID);
+
+    deleteLike(realSingleID);
+  };
 
   useEffect(() => {
     getPicturesOfTheDay();
@@ -111,21 +147,39 @@ function PicturesOfTheDay() {
           {pictures &&
             pictures.map((file: Picture, index) => (
               <div key={index}>
-                {/* <button onClick={()=>handleLike(pictures?.date)}>Like</button>  */}
 
-                <Button
-                  className={
-                    savedImagesArray?.includes(file.date)
-                      ? "savedPicture"
-                      : "unsavedPicture"
-                  }
-                  variant="outline-success"
-                  onClick={() => handleMark(file.date)}
-                  style={{ borderRadius: "50%", position: "absolute" }}
-                >
-                  {" "}
-                  <MdOutlineFavoriteBorder />
-                </Button>
+                {user? (savedImagesArray?.includes(file.date) ? (
+                  <>
+                    <Button
+                      className={
+                        savedImagesArray?.includes(file.date)
+                          ? "savedPicture"
+                          : "unsavedPicture"
+                      }
+                      variant="outline-success"
+                      onClick={() => handleDelete(file.date)}
+                      
+                    >
+                 <FaUserAstronaut />
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      className={
+                        savedImagesArray?.includes(file.date)
+                          ? "savedPicture"
+                          : "unsavedPicture"
+                      }
+                      variant="outline-success"
+                      onClick={() => handleMark(file)}
+                      style={{ borderRadius: "50%", position: "absolute" }}
+                    >
+                      <IoMdAdd />
+                    </Button>
+                  </>
+                )): null}
+
                 <Link to={`/detailsDayPicture/?date=${file.date}`}>
                   <p>
                     {" "}

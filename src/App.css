@@ -1,25 +1,5 @@
-#root {
-  margin: 0 auto;
 
-  text-align: center;
-}
-
-/* Planets */
-.planetsContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-top: 10px;
-}
-
-.planetsContainer div {
-  display: flex;
-  justify-content: right;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Multimedia */
+/* Media */
 .imageContainer {
   display: flex;
   justify-content: center;
@@ -28,48 +8,7 @@
   padding: 10px;
 }
 
-/* Picture of the day */
-.dateInputDiv {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-.dayPictureContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  
-}
 
-.MorePicsOfDay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Navbar */
-
-/* Pictures of the day  */
-
-@media screen and (max-width: 449px) {
-  .containerImages {
-    column-count: 1;
-  }
-}
-@media screen and (min-width: 450px) {
-  .containerImages {
-    column-count: 2;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .containerImages {
-    column-count: 3;
-  }
-}
-/* Media */
 @media screen and (max-width: 449px) {
   .containerMedia {
     column-count: 2;
@@ -98,10 +37,29 @@ img.img-fluid {
 }
 
 
-
 button.savedPicture {
-  background-color: black;
+  /* background: linear-gradient(10deg, lightgreen, darkgreen); */
+  background-color: transparent;
+  margin-left: 1%;
+  margin-top: 1%;
+  color: white;
+ border-radius:  50%;
+ position: absolute;
+ 
 }
 button.unsavedPicture {
-  background-color: white;
+  background-color: transparent;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+/* NAVBAR */
+.dropend > a:nth-child(1) {
+  margin-left: 23px;
+  color: white;
+  
+
+}
+.dropend:hover {
+  background-color: rgb(96, 96, 96);
 }

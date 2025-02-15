@@ -2,8 +2,7 @@ import { Bodies } from "../../types/customTypes";
 import useFetchHook from "../../hooks/useFetchHook";
 
 function EarthPage() {
-
-  const {data}= useFetchHook<Bodies>(
+  const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/terre"
   );
   console.log("data", data);
@@ -33,23 +32,31 @@ function EarthPage() {
 
   return (
     <>
-      <div className="planetsContainer">
+      <div className="singlePlanetContainer">
         {/* <h2>{info && info.englishName}</h2>
         <p>Definition: </p>
         <p>Gravity: {info?.gravity}</p>
         <p>Radius: {info?.equaRadius} kilometres</p>
         {info?.isPlanet === true ? <p>Type: Planet</p> : <p>Type: Moon</p>} */}
- 
+
         <h2>{data && data.englishName}</h2>
-        <p>Definition: The only planet known to support life, Earth has a balanced atmosphere with oxygen and water covering about 70% of its surface. It has a stable climate system and a protective magnetic field.</p>
+        <p>
+          Definition: The only planet known to support life, Earth has a
+          balanced atmosphere with oxygen and water covering about 70% of its
+          surface. It has a stable climate system and a protective magnetic
+          field.
+        </p>
         <p>Gravity: {data?.gravity}</p>
         <p>Radius: {data?.equaRadius} kilometres</p>
         {data?.isPlanet === true ? <p>Type: Planet</p> : <p>Type: Moon</p>}
 
-        <iframe
-          src="https://eyes.nasa.gov/apps/solar-system/#/earth/?featured=false&shareButton=false&menu=false&hideFullScreenToggle=true"
-          style={{ height: "400px" }}
-        ></iframe>
+        <div className="iframeContainer">
+          <iframe
+            src="https://eyes.nasa.gov/apps/solar-system/#/earth?featured=false&detailPanel=false&logo=false&search=false&shareButton=false&menu=false&collapseSettingsOptions=true&hideFullScreenToggle=true&locked=true&hideExternalLinks=true"
+             style={{ height: "500px", width: "100%"}}
+          ></iframe>
+         
+        </div>
       </div>
     </>
   );
