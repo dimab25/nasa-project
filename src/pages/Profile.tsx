@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { ImageDates } from "../types/customTypes";
+import { Image } from "react-bootstrap";
 // import useFetchHook from "../hooks/useFetchHook";
 
 function Profile() {
@@ -24,26 +25,43 @@ function Profile() {
   };
   console.log("imageIDs", imageIDs);
 
-    useEffect(() => {
+
+  // filter the COLLECTION to display the Images i marked as liked
+    const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
+      if (user && file.author.includes(user?.email)) return file.url;
+    });
+    console.log("", savedImagesArrayUndefined);
+    const savedImagesArray = savedImagesArrayUndefined?.filter(
+      (x) => x !== undefined
+    );
+    console.log("saved images array", savedImagesArray);
+
+  useEffect(() => {
     getImageIds();
   }, []);
 
   return (
     <>
-      <h5>Here you can find your account informations.</h5>
+    <div className="profileContainer">
+      <div>
+      <h5>Profile</h5>
       <h6>User E-Mail: {user?.email}</h6>
-      <h6>{user?.id}</h6>
+    
       <h6>{user?.userName}</h6>
 
-      <div>Images of the Day i liked </div>
-<div className="containerMyImages">
-        {imageIDs?.map((file) => (
-          <>
-          <div>
-          <img style={{width:"200px"}}
-          src={file.url} alt="" /></div>
-          </>
-        ))}</div>
+      <h5>Saved Images </h5></div>
+
+      <div className="containerMyImages">
+        {savedImagesArray?.map((file, index) => (
+          
+            <p key={index}>
+               {" "}
+              <Image src={file} alt="image" fluid/>
+            </p>
+          
+        ))}
+      </div>
+      </div>
     </>
   );
 }

@@ -39,8 +39,10 @@ const contextInitialValue: AuthContextType = {
 // 1. create and export context
 export const AuthContext = createContext<AuthContextType>(contextInitialValue);
 
-// 2. Create and export the provider: a component that contains the states, functions, etc...
 
+
+
+// 2. Create and export the provider: a component that contains the states, functions, etc...
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   // 4. Move to the provider all the states and functions you want to share#
 
@@ -54,86 +56,86 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         password
       );
       const user = userCredential.user;
-     
-      
+
       // console.log("user registered", user);
     } catch (err) {
       const error = err as Error;
-      console.log("error", error.message);
+      const errorCode = error.name;
+      console.log("error", error.name);
+      setErrorMessage(errorCode);
     }
   };
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const login = async (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        const email =user.email;
-        const id= user.uid
+        const email = user.email;
+        const id = user.uid;
         if (email && id) {
-          setUser({email,id})
-              // return "login sucee"
+          setUser({ email, id });
+        } else {
+          throw new Error("User information not found");
         }
-    
-        else {throw new Error("User information not found")}
         console.log("user login", user);
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-       
+        console.log("errorcode", errorCode, "errormessage", errorMessage);
+        setErrorMessage(errorCode);
       });
-      
   };
 
-  const checkUserStatus = ()=> {
-    onAuthStateChanged (auth, (user) => {
+  const checkUserStatus = () => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        
-        const email =user.email;
-        const id= user.uid
+
+        const email = user.email;
+        const id = user.uid;
         if (email && id) {
-          setUser({email,id})
+          setUser({ email, id });
+        } else {
+          throw new Error("User information not found");
         }
-        else {throw new Error("User information not found")}
 
         // console.log("user is logged in", user.email);
         // console.log("id", id);
-       
       } else {
         // User is signed out
         console.log("user is signed out");
-        setUser(null)
-  }})
-  }
-
-
-
-  const logout = () => {
-
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      setUser(null);
-    }).catch((error) => {
-      // An error happened.
-      console.log("sign out not succesful", error
-      );
+        setUser(null);
+      }
     });
   };
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("sign out not succesful", error);
+      });
+  };
   // 7. in providers property value include the elements (states, functions, variables) you want to share
-  
+
   useEffect(() => {
-   checkUserStatus();
-  }, [])
-  
-  
-  
+    checkUserStatus();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, register, errorMessage, setErrorMessage }}
+    >
       {children}
     </AuthContext.Provider>
   );

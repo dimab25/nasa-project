@@ -1,45 +1,26 @@
 import { Bodies } from "../../types/customTypes";
 import useFetchHook from "../../hooks/useFetchHook";
+import { Link } from "react-router";
+import { Button } from "react-bootstrap";
 
 function EarthPage() {
   const { data } = useFetchHook<Bodies>(
-    "https://api.le-systeme-solaire.net/rest/bodies/terre"
+    "https://api.le-systeme-solaire.net/rest/bodies/earth"
   );
-  console.log("data", data);
-
-  // const [info, setInfo] = useState<Bodies | null>(null);
-
-  // const getInfo = () => {
-  //   const urlSolarSystem =
-  //     "https://api.le-systeme-solaire.net/rest/bodies/terre";
-  //   fetch(urlSolarSystem)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((result) => {
-  //       const information = result;
-  //       setInfo(information);
-  //       console.log(information);
-  //     })
-  //     .catch((error) => {
-  //       console.log("error", error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   getInfo();
-  // }, []);
+  // console.log("data", data);
 
   return (
     <>
       <div className="singlePlanetContainer">
-        {/* <h2>{info && info.englishName}</h2>
-        <p>Definition: </p>
-        <p>Gravity: {info?.gravity}</p>
-        <p>Radius: {info?.equaRadius} kilometres</p>
-        {info?.isPlanet === true ? <p>Type: Planet</p> : <p>Type: Moon</p>} */}
-
-        <h2>{data && data.englishName}</h2>
+        <div className="headlinePlanet">
+          <Link to={`/venus`}>
+            <Button variant="outline-success"  >{"<"} </Button>
+          </Link>
+          <h2>{data?.englishName} </h2>{" "}
+          <Link to={`/jupiter`}>
+            <Button variant="outline-success">{">"}</Button>
+          </Link>{" "}
+        </div>
         <p>
           Definition: The only planet known to support life, Earth has a
           balanced atmosphere with oxygen and water covering about 70% of its
@@ -49,13 +30,19 @@ function EarthPage() {
         <p>Gravity: {data?.gravity}</p>
         <p>Radius: {data?.equaRadius} kilometres</p>
         {data?.isPlanet === true ? <p>Type: Planet</p> : <p>Type: Moon</p>}
+        <div className="moonsDiv">
+          <p>Moons:</p>
+          {data &&
+            data.moons
+              .slice(0, 9)
+              .map((file, index) => <p key={index}>{file.moon}&nbsp;</p>)}
+        </div>
 
         <div className="iframeContainer">
           <iframe
             src="https://eyes.nasa.gov/apps/solar-system/#/earth?featured=false&detailPanel=false&logo=false&search=false&shareButton=false&menu=false&collapseSettingsOptions=true&hideFullScreenToggle=true&locked=true&hideExternalLinks=true"
-             style={{ height: "500px", width: "100%"}}
+            style={{ height: "500px", width: "100%" }}
           ></iframe>
-         
         </div>
       </div>
     </>

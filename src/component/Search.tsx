@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 type SearchProps = {
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -11,15 +11,15 @@ function Search({ handleInputChange }: SearchProps) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <div className="searchBar">
+      <Form onSubmit={handleSubmit}>
+        <Form.Control
           type="text"
           onChange={handleInputChange}
           placeholder="Type search..."
         />
-        <Button type="submit">Search</Button>
-      </form>
+       
+      </Form>
     </div>
   );
 }

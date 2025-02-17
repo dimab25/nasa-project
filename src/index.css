@@ -1,6 +1,19 @@
 body {
-    background-color: #0b0c10;
-    
-    padding: 1rem;
-    color: white;
+  background-color: #262626;
+
+  /* background-color: #0b0c10; */
+  padding: 1rem;
+  color: white;
+
+  font-family: "Source Code Pro", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 24px;
+  }
 }

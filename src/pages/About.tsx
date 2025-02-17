@@ -10,7 +10,7 @@ import mars from "../images/mars.jpg";
 import saturn from "../images/saturn.jpg";
 import sun from "../images/sun.jpg";
 import dwarf from "../images/dwarf-planets.webp";
-import { Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { Link } from "react-router";
 
 function About() {
@@ -30,147 +30,172 @@ function About() {
         recognized dwarf planets in our solar system: Ceres, Pluto, Haumea,
         Makemake, and Eris.
       </p>
+
+      <div className="sunDiv">
+        <div style={{ width: "400px" }}>
+          <Image
+            src={sun}
+            alt="image"
+            style={{ width: "auto", borderRadius: "50%" }}
+            fluid
+          />
+        </div>
+
+        <div style={{ width: "800px" }}>
+          <h6>The Sun: Our Cosmic Powerhouse </h6>
+          <p>
+            The Sun is a giant ball of plasma, 109 times wider than Earth, with
+            a core temperature of 15 million°C (27 million°F). At 4.6 billion
+            years old, it powers our solar system through nuclear fusion,
+            turning hydrogen into helium. Its solar winds shape space weather,
+            affecting satellites and power grids. Despite its size, the Sun is
+            just a medium-sized star in a vast universe!
+          </p>
+        </div>
+      </div>
       <div className="iframeContainer">
         <iframe
-          src="https://eyes.nasa.gov/apps/solar-system/?featured=false&shareButton=false&menu=false&hideFullScreenToggle=true"
+          src="https://eyes.nasa.gov/apps/solar-system/#/home?featured=false&detailPanel=false&logo=false&search=false&shareButton=false&menu=false&collapseSettingsOptions=true&hideFullScreenToggle=true&hideExternalLinks=true"
           style={{ height: "500px", width: "100%" }}
         ></iframe>
       </div>
-      <Card className="eachPlanetDiv" style={{ height: "auto" }}>
-        <Link to={`/`}>
-          <Card.Img
-            className="planetImages"
-            variant="top"
-            src={sun}
-            alt=""
-            style={{ width: "300px", borderRadius: "50%" }}
-          />
-          <Card.Body>
-            <Card.Text>Sun</Card.Text>
-          </Card.Body>
-        </Link>
-      </Card>
-
       <div className="outerAboutDiv">
         <div className="containerAbout">
           <Card className="eachPlanetDiv">
-            <Card.Img
-              className="planetImages"
-              variant="top"
-              src={earth}
-              alt=""
-              style={{ width: "300px", borderRadius: "50%" }}
-            />
-            <Card.Body>
-              <Card.Text>Earth</Card.Text>
-            </Card.Body>
+            <Link to={`/earth`}>
+              <Card.Img
+                className="planetImages"
+                variant="top"
+                src={earth}
+                alt="image"
+                style={{ width: "300px", borderRadius: "50%" }}
+              />
+              <Card.Body>
+                <Card.Text>Earth</Card.Text>
+              </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/jupiter`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={jupiter}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Jupiter</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/mars`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={mars}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Mars</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/mercury`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={mercury}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Mercury</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/neptune`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={neptune}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Neptune</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/saturn`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={saturn}
-              alt=""
-              style={{ width: "300px" }}
+              alt="image"
+              style={{ width: "300px", height: "300px" }}
             />
             <Card.Body>
               <Card.Text>Saturn</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/uranus`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={uranus}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Uranus</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
 
           <Card className="eachPlanetDiv">
+          <Link to={`/venus`}>
             <Card.Img
               className="planetImages"
               variant="top"
               src={venus}
-              alt=""
+              alt="image"
               style={{ width: "300px", borderRadius: "50%" }}
             />
             <Card.Body>
               <Card.Text>Venus</Card.Text>
             </Card.Body>
+            </Link>
           </Card>
         </div>
       </div>
+
       <div className="dwarfDiv">
-        <Card className="eachPlanetDiv">
-          <Card.Img
-            className="planetImages"
-            variant="top"
-            src={dwarf}
-            alt=""
-            style={{ width: "400px", borderRadius: "30px" }}
-          />
-          <Card.Body>
-            <Card.Text>Dwarf Planets</Card.Text>
-          </Card.Body>
-        </Card>
+        {/* <Card className="eachPlanetDiv"> */}
+        <Link to={`/dwarf`}>
+        <Image
+          className="planetImages"
+          src={dwarf}
+          alt="image"
+          style={{ width: "1200px" }}
+          fluid
+        />
+        <Card.Body>
+          <Card.Text>Dwarf Planets</Card.Text>
+        </Card.Body></Link>
       </div>
     </div>
   );

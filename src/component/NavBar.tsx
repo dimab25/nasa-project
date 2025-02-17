@@ -2,10 +2,10 @@ import { Link } from "react-router";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Button, DropdownHeader, DropdownItem, DropdownItemText, DropdownMenu, DropdownToggle, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import DropdownContext from "react-bootstrap/esm/DropdownContext";
+
 
 function NavBar() {
   // 9. Subscribe to the context and use the elements available
@@ -20,7 +20,7 @@ function NavBar() {
     >
       <Container fluid>
         <Navbar.Brand as={Link} to={"/"}>
-          Nasa
+         UNISCOPE
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -102,7 +102,7 @@ function NavBar() {
                 </>
               ) : null}
             </NavDropdown>
-            {user ? (
+            {/* {user ? (
               <Button variant="outline-success" onClick={logout}>
                 Log out
               </Button>
@@ -110,7 +110,7 @@ function NavBar() {
               <Button as={Link} to={"/login"} variant="outline-danger">
                 Login
               </Button>
-            )}
+            )} */}
           </Nav>
         </Navbar.Collapse>
       </Container>

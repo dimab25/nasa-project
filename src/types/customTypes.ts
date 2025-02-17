@@ -128,7 +128,6 @@ export interface Daum {
   center: string;
   date_created: string;
   description: string;
-  description_508: string;
   keywords: string[];
   media_type: string;
   nasa_id: string;
@@ -139,9 +138,7 @@ export interface Link {
   href: string;
   rel: string;
   render: string;
-  width: number;
-  size: number;
-  height: number;
+
 }
 
 export interface Metadata {
@@ -157,13 +154,13 @@ export type ImageDates = {
    url: string;
 }
 
-export interface Picture {
-  copyright: string;
-  date: string;
-  explanation: string;
-  hdurl: string;
-  media_type: string;
-  service_version: string;
-  title: string;
-  url: string;
-}
+// export interface Picture {
+//   copyright: string;
+//   date: string;
+//   explanation: string;
+//   hdurl: string;
+//   media_type: string;
+//   service_version: string;
+//   title: string;
+//   url: string;
+// }

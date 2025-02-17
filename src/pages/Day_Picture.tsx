@@ -43,7 +43,7 @@ function Day_Picture() {
 
   return (
     <>
-      <div>
+      <div className="profileContainer">
         <div className="dateInputDiv">
           <DateInput handleInputDate={handleInputDate} />
         </div>
@@ -62,15 +62,16 @@ function Day_Picture() {
             ></iframe>
           )}
           <div className="titleAndDate">
-            <div><Link
-              to={`/detailsDayPicture/?date=${pictures && pictures.date}`}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <p>{pictures && pictures.title} </p>
-            </Link>
+            <div>
+              <Link
+                to={`/detailsDayPicture/?date=${pictures && pictures.date}`}
+              >
+                <p>{pictures && pictures.title} </p>
+              </Link>
             </div>
-<div>
-            <p>{pictures && pictures.date}</p></div>
+            <div>
+              <p> {pictures && pictures.date}</p>
+            </div>
           </div>
         </div>
 

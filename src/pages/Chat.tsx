@@ -5,6 +5,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  limit,
   onSnapshot,
   orderBy,
   query,
@@ -37,7 +38,7 @@ function Chat() {
 
   // LIVE UPDATES
   const onSnapshotMessages = () => {
-    const q = query(collection(db, "chat"), orderBy("date"));
+    const q = query(collection(db, "chat"), orderBy("date", "desc"), limit(7));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const messagesArray: [] = [];
       querySnapshot.forEach((doc) => {
@@ -117,10 +118,11 @@ function Chat() {
   return (
     <div className="chatDiv">
       <h2>Chat</h2>
+      <p>Do you believe in aliens? Will humans ever live on another planet? Share your thoughts and chat with others about anything on your mind!</p>
       <div>
         <Stack gap={3} className="align-items-center">
           {messages &&
-            messages.map((message) => {
+            [...messages].slice().reverse().map((message) => {
               return (
                 <div
                   key={message.id}

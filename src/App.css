@@ -1,4 +1,3 @@
-
 /* Media */
 .imageContainer {
   display: flex;
@@ -7,7 +6,6 @@
   gap: 5px;
   padding: 10px;
 }
-
 
 @media screen and (max-width: 449px) {
   .containerMedia {
@@ -36,16 +34,14 @@ img.img-fluid {
   border-radius: 0px;
 }
 
-
 button.savedPicture {
   /* background: linear-gradient(10deg, lightgreen, darkgreen); */
   background-color: transparent;
   margin-left: 1%;
   margin-top: 1%;
   color: white;
- border-radius:  50%;
- position: absolute;
- 
+  border-radius: 50%;
+  position: absolute;
 }
 button.unsavedPicture {
   background-color: transparent;
@@ -55,11 +51,152 @@ button.unsavedPicture {
 
 /* NAVBAR */
 .dropend > a:nth-child(1) {
-  margin-left: 23px;
+  margin-left: 13px;
   color: white;
-  
-
 }
+.navbar-text {
+  padding-left: 20px;
+}
+div.show:nth-child(2) {
+  width: max-content;
+}
+
 .dropend:hover {
   background-color: rgb(96, 96, 96);
+}
+.bg-body-tertiary {
+  font-weight: 500;
+}
+
+/* Saved Images Profile Page */
+
+@media screen and (max-width: 449px) {
+  .containerMyImages {
+    column-count: 2;
+    /* width: max; */
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .containerMyImages {
+    column-count: 3;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .containerMyImages {
+    column-count: 4;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .containerMyImages {
+    column-count: 4;
+  }
+}
+
+.containerMyImages {
+  margin-top: 20px;
+  column-gap: 15px;
+}
+
+.containerMyImages img {
+  border-radius: 20px;
+}
+
+/* LOGIN */
+
+.loginTextDiv {
+  margin-top: 30px;
+}
+.loginDiv {
+  padding: 30px;
+}
+div.mb-3 {
+  max-width: 700px;
+}
+.text-muted {
+  color: white !important;
+}
+
+.profileContainer {
+  padding: 30px;
+  margin-top: 10px;
+  /* text-align: center; */
+}
+
+/* ANIMATION */
+.animation {
+  width: 100%;
+  /* height: 50%; */
+  object-fit: cover;
+}
+.overlayHome {
+  position: absolute;
+ width: 94%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 2px 3px black;
+  font-weight: 600;
+  font-size: 26px;
+text-align: center;
+  font-family: "Silkscreen", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@media screen and (max-width: 449px) {
+  .overlayHome {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 450px) {
+  .overlayHome {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 750px) {
+  .overlayHome {
+    font-size: 24px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .overlayHome {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .overlayHome {
+    font-size: 38px;
+  }
+}
+
+.searchBar {
+  display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin: 10px;
+
+}
+
+.homeContainer {
+  margin-top: 10px;
+}
+
+.footerDiv {
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgb(21, 21, 22);
+border-radius: 20px;
+  align-items: center;
+}
+.footerDiv img {
+  margin-bottom: 10px;
 }

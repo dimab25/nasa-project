@@ -34,17 +34,20 @@ function DetailsMedia() {
 
   return (
     <>
-      <div>DetailsMedia</div>
-
-      {pictures && <p>{pictures.collection.items[0].data[0].media_type}</p>}
-           {pictures && <p>{pictures.collection.items[0].data[0].description}</p>}
-      {pictures && (
-        <Image
-          src={pictures.collection.items[0].links[0].href}
-          style={{ width: "700px" }}
-          fluid
-        />
-      )}
+      {" "}
+      <div className="detailsDayPictures">
+        {pictures && (
+          <Image
+            src={pictures.collection.items[0].links[0].href}
+            style={{ width: "700px" }}
+            fluid
+            alt="image"
+          />
+        )}
+        {pictures && <p>{pictures.collection.items[0].data[0].title}</p>}
+        {pictures && <p>{pictures.collection.items[0].data[0].description}</p>}
+        {pictures && <p>{pictures.collection.items[0].data[0].date_created}</p>}
+      </div>
     </>
   );
 }

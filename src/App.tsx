@@ -6,10 +6,8 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import Media from "./pages/Media";
 import { AuthContextProvider } from "./context/AuthContext";
-// import dotenv from 'dotenv'; 
+// import dotenv from 'dotenv';
 // dotenv.config();
-
-
 
 import DetailsDayPictures from "./pages/DetailsDayPictures";
 import Register from "./pages/Register";
@@ -29,12 +27,17 @@ import Uranus from "./pages/Solar-System/Uranus";
 import Venus from "./pages/Solar-System/Venus";
 import Profile from "./pages/Profile";
 import DwarfPlanets from "./pages/DwarfPlanets";
+import ProtectedRoute from "./component/ProtectedRoute";
+import ErrorPage from "./component/ErrorPage";
+import Footer from "./component/Footer";
 
 const Root = () => {
   return (
     <>
       <NavBar />
       <Outlet />
+      <Footer />
+
     </>
   );
 };
@@ -67,15 +70,16 @@ function App() {
               <Route path="/venus" element={<Venus />} />
               <Route path="/dwarf" element={<DwarfPlanets />} />
 
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/detailsDayPicture"
+              <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+              <Route
+                path="/detailsDayPicture"
                 element={<DetailsDayPictures />}
-              /><Route path="/detailsMedia"
-              element={<DetailsMedia />}
-            />
+              />
+              <Route path="/detailsMedia" element={<DetailsMedia />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/*" element={<ErrorPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

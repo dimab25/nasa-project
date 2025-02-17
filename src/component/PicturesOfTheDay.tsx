@@ -29,17 +29,22 @@ function PicturesOfTheDay() {
         return response.json();
       })
       .then((result) => {
-        const pictureOfTheDay = result as Picture;
+        const pictureOfTheDay = result as Picture[];
         setPictures(pictureOfTheDay);
-        // console.log("pictureof the day", pictureOfTheDay);
       })
       .catch((error) => {
         console.log("error", error);
       });
   };
 
+  // export interface imageObjectType{
+  //   imageDate: string,
+  //   imageUrl
+
+  // }
+
   // ADDING INFORMATION TO THE DB
-  const addInformation = async (imageObject) => {
+  const addInformation = async (imageObject: Picture) => {
     try {
       const imageDate = imageObject.date;
       const imageUrl = imageObject.url;
@@ -50,8 +55,8 @@ function PicturesOfTheDay() {
         author: author,
         url: imageUrl,
       });
-      console.log("Document written with ID: ", docRef.id);
-      // console.log("db", db);
+      // console.log("Document written with ID: ", docRef.id);
+
       // setNewInformation(docRef.id);
       if (docRef) getImageIds();
     } catch (e) {
@@ -60,15 +65,14 @@ function PicturesOfTheDay() {
   };
 
   const handleMark = (props: {}) => {
-    const imageObject = props as string;
-    console.log("imageDate", imageObject);
-
+    const imageObject = props as Picture;
+   
     addInformation(imageObject);
   };
 
   //  GET INFORMATION FROM DB
   const [imageIDs, setImageIDs] = useState<ImageDates[] | null>(null);
-  console.log("imageid", imageIDs);
+  // console.log("imageid", imageIDs);
 
   const getImageIds = async () => {
     const querySnapshot = await getDocs(collection(db, "likes"));
@@ -87,18 +91,16 @@ function PicturesOfTheDay() {
   const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
     if (user && file.author.includes(user?.email)) return file.date;
   });
-  console.log("", savedImagesArrayUndefined);
+
   const savedImagesArray = savedImagesArrayUndefined?.filter(
     (x) => x !== undefined
   );
-  console.log("saved images array", savedImagesArray);
 
   // DELETE LIKES
-  const deleteLike = async (props) => {
+  const deleteLike = async (props: string) => {
     await deleteDoc(doc(db, "likes", props));
-    console.log(doc(db, "likes", props));
-    console.log("works bitch");
-    console.log("propsId", props);
+    // console.log(doc(db, "likes", props));
+
     getImageIds();
   };
 
@@ -106,31 +108,27 @@ function PicturesOfTheDay() {
   const handleDelete = (props: string | undefined) => {
     const testX = props as string;
 
-    // console.log("testX is a date string", testX);
-
     // filter the whole COLLECTION for the LikedImageID
     const savedIDsArrayUndefined = imageIDs?.map((file: ImageDates) => {
       if (user && file.author.includes(user?.email)) return file;
     });
-    // console.log("testingconst", savedIDsArrayUndefined);
 
     const savedIDsArray = savedIDsArrayUndefined?.filter(
       (x) => x !== undefined
     );
-    // console.log("testingconst", savedIDsArray);
 
     const singleIdUndefined = savedIDsArray?.map((file) => {
       if (file.date == testX) {
         return file.id;
       }
     });
-    // console.log(singleIdUndefined);
-    const singleID = singleIdUndefined?.filter((x) => x !== undefined);
-    console.log("singleid", singleID);
-    const realSingleID = singleID?.toString();
-    console.log(realSingleID);
 
-    deleteLike(realSingleID);
+    const singleID = singleIdUndefined?.filter((x) => x !== undefined);
+
+    const realSingleID = singleID?.toString();
+
+    deleteLike(realSingleID as string);
+    console.log("realSingleID", realSingleID);
   };
 
   useEffect(() => {
@@ -140,55 +138,50 @@ function PicturesOfTheDay() {
 
   return (
     <>
-      <div>More pictures of the day </div>
+      <h5>More images of the day </h5>
 
       <div className="MorePicsOfDay">
         <div className="containerImages">
           {pictures &&
             pictures.map((file: Picture, index) => (
               <div key={index}>
-
-                {user? (savedImagesArray?.includes(file.date) ? (
-                  <>
-                    <Button
-                      className={
-                        savedImagesArray?.includes(file.date)
-                          ? "savedPicture"
-                          : "unsavedPicture"
-                      }
-                      variant="outline-success"
-                      onClick={() => handleDelete(file.date)}
-                      
-                    >
-                 <FaUserAstronaut />
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button
-                      className={
-                        savedImagesArray?.includes(file.date)
-                          ? "savedPicture"
-                          : "unsavedPicture"
-                      }
-                      variant="outline-success"
-                      onClick={() => handleMark(file)}
-                      style={{ borderRadius: "50%", position: "absolute" }}
-                    >
-                      <IoMdAdd />
-                    </Button>
-                  </>
-                )): null}
+                {user ? (
+                  savedImagesArray?.includes(file.date) ? (
+                    <>
+                      <Button
+                        className={
+                          savedImagesArray?.includes(file.date)
+                            ? "savedPicture"
+                            : "unsavedPicture"
+                        }
+                        variant="outline-success"
+                        onClick={() => handleDelete(file.date)}
+                      >
+                        <FaUserAstronaut />
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        className={
+                          savedImagesArray?.includes(file.date)
+                            ? "savedPicture"
+                            : "unsavedPicture"
+                        }
+                        variant="outline-success"
+                        onClick={() => handleMark(file)}
+                        style={{ borderRadius: "50%", position: "absolute" }}
+                      >
+                        <IoMdAdd />
+                      </Button>
+                    </>
+                  )
+                ) : null}
 
                 <Link to={`/detailsDayPicture/?date=${file.date}`}>
                   <p>
                     {" "}
-                    <Image
-                      src={file.url}
-                      alt=""
-                      style={{ width: "700px" }}
-                      fluid
-                    />
+                    <Image src={file.url} alt="image" fluid />
                   </p>
                 </Link>
               </div>

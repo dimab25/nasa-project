@@ -1,28 +1,25 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
 const DelayedLink = () => {
-  // const [delay, setDelay] = useState<boolean>(false);
   const navigate = useNavigate();
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      // setDelay(true);
       return navigate("/");
     }, 3000);
 
     return () => clearTimeout(timeoutId);
   }, []);
   // console.log(delay);
-  return(
-    <div></div>
-  )
+  return <div></div>;
 };
 
 function Login() {
   const { login } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
+  const { errorMessage, setErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,67 +29,81 @@ function Login() {
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  console.log(errorMessage);
+  useEffect;
+
   const handleSubmitRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log("email,password", email, password);
     const loginOperation = await login(email, password);
-    // if(loginOperation === "ok") {
-    //   delayedRedirect()
-    // }
+    setErrorMessage(null);
 
+    // i dont understand that
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <div>
-        <form onSubmit={handleSubmitRegister}>
-          <div className="label-input">
-            <label htmlFor="email">E-Mail</label>
-            {user ? (
-              <input disabled={true} />
-            ) : (
-              <input
-                type="text"
-                name="email"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            )}
-          </div>
-          <div className="label-input">
-            <label htmlFor="password">Password</label>
-            {user ? (
-              <input type="password" disabled={true} />
-            ) : (
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            )}
-          </div>
+    <>
+      <div className="loginDiv">
+        <h2>Login</h2>
+        <Form onSubmit={handleSubmitRegister}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={handlePasswordChange}
+              value={password}
+            />
+          </Form.Group>
+
           {user ? null : (
             <Button variant="outline-success" type="submit">
               Login
             </Button>
           )}
-        </form>
+        </Form>
+
+
+        <div className="loginTextDiv">
+          {errorMessage == "auth/invalid-credential" ? (
+            <div
+              style={{
+                background: "red",
+                borderRadius: "20px",
+                width: "max-content",
+              }}
+            >
+              {"Your email and password do not match. Please try again."}{" "}
+            </div>
+          ) : null}
+
+          {user ? (
+            <>
+              <p>You have successfully logged in.</p>
+              <p>You will be redirected to the home display.</p>
+            </>
+          ) : (
+            <Link to={"/register"}>No account yet? Please register here.</Link>
+          )}
+          {user && <DelayedLink />}
+        </div>
       </div>
-      {user ? (
-        <>
-          <p>You have successfully logged in.</p>
-          <p>You will be redirected to the home display</p>
-        </>
-      ) : (
-        <Link to={"/register"}>No account yet? Please register</Link>
-      )}
-      {user && <DelayedLink />}
-   
-    </div>
+    </>
   );
 }
 

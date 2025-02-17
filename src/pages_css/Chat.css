@@ -1,90 +1,86 @@
 /* CHAT */
 
-
-
-
 div.MessagesInfo {
-    background: whitesmoke;
-    color: black;
-    border-radius: 20px;
-    font-size: 14px;
-    align-self: flex-start;
-  }
-  div.MessageUser {
-    background: #bdffb6;
-    color: black;
-    border-radius: 20px;
-    font-size: 14px;
-    align-self: flex-end;
-  }
-  .chatAuthorAndDate {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    font-size: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  div.chatTextAndButton {
-    display:flex; 
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-  
-  div.deleteButtonDiv {
-    align-self: flex-end;
-   padding: 10px;
-   
-  }
-  
-  p.chatText {
-    text-align: left;
-    padding-left: 20px;
-  }
-  
-  /* button.deleteButton {
+  background: whitesmoke;
+  color: black;
+  border-radius: 20px;
+  font-size: 14px;
+  align-self: flex-start;
+}
+div.MessageUser {
+  background: #bdffb6;
+  color: black;
+  border-radius: 20px;
+  font-size: 14px;
+  align-self: flex-end;
+}
+.chatAuthorAndDate {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+div.chatTextAndButton {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+div.deleteButtonDiv {
+  align-self: flex-end;
+  padding: 10px;
+}
+
+p.chatText {
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* button.deleteButton {
   
   } */
-  
-  
-  @media screen and (min-width: 450px) {
-    div.MessageUser,
-    div.MessagesInfo {
-      width: 300px !important;
-      font-size: 18px;
-    }
+
+@media screen and (min-width: 450px) {
+  div.MessageUser,
+  div.MessagesInfo {
+    width: 300px !important;
+    font-size: 18px;
   }
-  @media screen and (min-width: 600px) {
-    div.MessageUser,
-    div.MessagesInfo {
-      width: 400px !important;
-      font-size: 22px;
-    }
+}
+@media screen and (min-width: 600px) {
+  div.MessageUser,
+  div.MessagesInfo {
+    width: 400px !important;
+    font-size: 22px;
   }
-  @media screen and (min-width: 800px) {
-    div.MessageUser,
-    div.MessagesInfo {
-      width: 500px !important;
-      font-size: 24px;
-    }
+}
+@media screen and (min-width: 800px) {
+  div.MessageUser,
+  div.MessagesInfo {
+    width: 500px !important;
+    font-size: 24px;
   }
-  @media screen and (min-width: 1000px) {
-    div.MessageUser,
-    div.MessagesInfo {
-      width: 600px !important;
-      font-size: 26px;
-    }
-    div.chatDiv {
-      margin-left: 10rem;
-      margin-right: 10rem;
-    }
+}
+@media screen and (min-width: 1000px) {
+  div.MessageUser,
+  div.MessagesInfo {
+    width: 600px !important;
+    font-size: 26px;
   }
-  
-  @media screen and (min-width: 450px) {
+  div.chatDiv {
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+}
+
+/* @media screen and (min-width: 450px) {
     #floatingInput {
       width: 420px !important;
+      
     }
   }
   @media screen and (min-width: 600px) {
@@ -101,5 +97,7 @@ div.MessagesInfo {
     #floatingInput {
       width: 900px !important;
     }
-  }
-  
+  } */
+.chatDiv {
+  text-align: center;
+}

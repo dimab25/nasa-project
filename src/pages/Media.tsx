@@ -9,18 +9,18 @@ function Media() {
   const [keyword, setKeyword] = useState("earth");
 
   const searchUrl = `https://images-api.nasa.gov/search?q=${keyword}&media_type=image`;
-  
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     setKeyword(e.target.value);
   };
   // useEffect hook close to the return
   useEffect(() => {
-    let controller:AbortController
+    let controller: AbortController;
     const fetchSearchImage = () => {
-     controller= new AbortController()
-      const signal = controller.signal
-      fetch(searchUrl, {signal:signal})
+      controller = new AbortController();
+      const signal = controller.signal;
+      fetch(searchUrl, { signal: signal })
         .then((response) => {
           return response.json();
         })
@@ -36,33 +36,34 @@ function Media() {
     };
     fetchSearchImage();
 
-
     return () => {
-     controller.abort()
-    }
+      controller.abort();
+    };
   }, [keyword]);
 
   return (
     <>
-      <Search handleInputChange={handleInputChange} />
-      <div className="containerMedia">
-        {itemImages &&
-          itemImages.map((item: Item) => (
-            <div key={item.data[0].nasa_id}>
-              {item.links.length > 0 && (
-                <p>
-                  <Link to={`/detailsMedia/?id=${item.data[0].nasa_id}`}>
-                    <Image
-                      src={item.links[1].href}
-                      alt=""
-                      style={{ width: "700px" }}
-                      fluid
-                    />
-                  </Link>
-                </p>
-              )}
-            </div>
-          ))}
+      <div className="profileContainer">
+        <Search handleInputChange={handleInputChange} />
+        <div className="containerMedia">
+          {itemImages &&
+            itemImages.map((item: Item) => (
+              <div key={item.data[0].nasa_id}>
+                {item.links.length > 0 && (
+                  <p>
+                    <Link to={`/detailsMedia/?id=${item.data[0].nasa_id}`}>
+                      <Image
+                        src={item.links[1].href}
+                        alt="image"
+                        style={{ width: "700px" }}
+                        fluid
+                      />
+                    </Link>
+                  </p>
+                )}
+              </div>
+            ))}
+        </div>
       </div>
     </>
   );
