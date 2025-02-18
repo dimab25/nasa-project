@@ -49,6 +49,7 @@ function Chat() {
         // console.log("test",message);
         setMessages(messagesArray);
       });
+      console.log(unsubscribe);
     });
   };
 
