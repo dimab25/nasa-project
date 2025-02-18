@@ -23,18 +23,15 @@ function Profile() {
       setImageIDs(imageIDArray);
     });
   };
-  console.log("imageIDs", imageIDs);
-
 
   // filter the COLLECTION to display the Images i marked as liked
-    const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
-      if (user && file.author.includes(user?.email)) return file.url;
-    });
-    console.log("", savedImagesArrayUndefined);
-    const savedImagesArray = savedImagesArrayUndefined?.filter(
-      (x) => x !== undefined
-    );
-    console.log("saved images array", savedImagesArray);
+  const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
+    if (user && file.author.includes(user?.email)) return file.url;
+  });
+
+  const savedImagesArray = savedImagesArrayUndefined?.filter(
+    (x) => x !== undefined
+  );
 
   useEffect(() => {
     getImageIds();
@@ -42,25 +39,24 @@ function Profile() {
 
   return (
     <>
-    <div className="profileContainer">
-      <div>
-      <h5>Profile</h5>
-      <h6>User E-Mail: {user?.email}</h6>
-    
-      <h6>{user?.userName}</h6>
+      <div className="profileContainer">
+        <div>
+          <h5>Profile</h5>
+          <h6>User E-Mail: {user?.email}</h6>
 
-      <h5>Saved Images </h5></div>
+          <h6>{user?.userName}</h6>
 
-      <div className="containerMyImages">
-        {savedImagesArray?.map((file, index) => (
-          
+          <h5>Saved Images </h5>
+        </div>
+
+        <div className="containerMyImages">
+          {savedImagesArray?.map((file, index) => (
             <p key={index}>
-               {" "}
-              <Image src={file} alt="image" fluid/>
+              {" "}
+              <Image src={file} alt="image" fluid />
             </p>
-          
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </>
   );

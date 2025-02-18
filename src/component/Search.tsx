@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 type SearchProps = {
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;

@@ -7,7 +7,6 @@ function Mercury() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/mercury"
   );
-  // console.log("data", data);
 
   return (
     <>

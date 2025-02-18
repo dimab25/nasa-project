@@ -23,7 +23,6 @@ function Day_Picture() {
       .then((result) => {
         const pictureOfTheDay = result as Picture;
         setPictures(pictureOfTheDay);
-        // console.log(pictureOfTheDay);
       })
       .catch((error) => {
         console.log("error", error);
@@ -31,12 +30,9 @@ function Day_Picture() {
   };
 
   const handleInputDate = (e: ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value);
     setChoosenDate(e.target.value);
-    // console.log("chossenDate", choosenDate);
   };
-  // console.log("chossenDate", choosenDate);
-  // useEffect hook close to the return
+
   useEffect(() => {
     getPictureOfTheDay();
   }, [choosenDate]);

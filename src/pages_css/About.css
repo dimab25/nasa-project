@@ -73,8 +73,6 @@
   opacity: 1;
 }
 .dwarfDiv {
-  /* display: flex; */
-  /* justify-content: center; */
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -82,7 +80,6 @@
 }
 
 /* THE SUN  */
-
 .sunDiv {
   display: flex;
   justify-content: center;

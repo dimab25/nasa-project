@@ -7,7 +7,7 @@ function EarthPage() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/earth"
   );
-  // console.log("data", data);
+ 
 
   return (
     <>

@@ -7,7 +7,7 @@ type ProtectedRouteProps = {
 };
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-  console.log("Protected children", children);
+
   // 9. Subscribe to the context and use the elements available
   const { user } = useContext(AuthContext);
   return (

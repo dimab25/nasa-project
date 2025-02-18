@@ -37,12 +37,6 @@ function PicturesOfTheDay() {
       });
   };
 
-  // export interface imageObjectType{
-  //   imageDate: string,
-  //   imageUrl
-
-  // }
-
   // ADDING INFORMATION TO THE DB
   const addInformation = async (imageObject: Picture) => {
     try {
@@ -66,7 +60,7 @@ function PicturesOfTheDay() {
 
   const handleMark = (props: {}) => {
     const imageObject = props as Picture;
-   
+
     addInformation(imageObject);
   };
 
@@ -139,7 +133,6 @@ function PicturesOfTheDay() {
   return (
     <>
       <h5>More images of the day </h5>
-
       <div className="MorePicsOfDay">
         <div className="containerImages">
           {pictures &&

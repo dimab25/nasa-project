@@ -1,5 +1,4 @@
 /* CHAT */
-
 div.MessagesInfo {
   background: whitesmoke;
   color: black;
@@ -40,10 +39,6 @@ p.chatText {
   padding-left: 20px;
 }
 
-/* button.deleteButton {
-  
-  } */
-
 @media screen and (min-width: 450px) {
   div.MessageUser,
   div.MessagesInfo {
@@ -77,27 +72,6 @@ p.chatText {
   }
 }
 
-/* @media screen and (min-width: 450px) {
-    #floatingInput {
-      width: 420px !important;
-      
-    }
-  }
-  @media screen and (min-width: 600px) {
-    #floatingInput {
-      width: 550px !important;
-    }
-  }
-  @media screen and (min-width: 800px) {
-    #floatingInput {
-      width: 740px !important;
-    }
-  }
-  @media screen and (min-width: 1000px) {
-    #floatingInput {
-      width: 900px !important;
-    }
-  } */
 .chatDiv {
   text-align: center;
 }

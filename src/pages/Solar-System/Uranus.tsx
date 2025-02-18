@@ -7,7 +7,7 @@ function Uranus() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/uranus"
   );
-  // console.log("data", data);
+
   return (
     <>
       <div className="singlePlanetContainer">

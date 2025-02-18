@@ -1,59 +1,54 @@
 .dateInputDiv {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .titleAndDate {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 
-gap: 30px;
-
+  gap: 30px;
 }
 
 /* Picture of the day */
 .dateInputDiv {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-  }
-  .dayPictureContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-   align-items: center;
-    
-  }
-  
-
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.dayPictureContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 @media screen and (max-width: 449px) {
-    .containerImages {
-      column-count: 1;
-    }
+  .containerImages {
+    column-count: 1;
   }
-  @media screen and (min-width: 450px) {
-    .containerImages {
-      column-count: 2;
-    }
+}
+@media screen and (min-width: 450px) {
+  .containerImages {
+    column-count: 2;
   }
-  
-  @media screen and (min-width: 1000px) {
-    .containerImages {
-      column-count: 3;
-    }
-  }
+}
 
-  .detailsDayPictures {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 10px;
+@media screen and (min-width: 1000px) {
+  .containerImages {
+    column-count: 3;
   }
+}
 
-  .titelAndButton {
-    display: flex;
+.detailsDayPictures {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.titelAndButton {
+  display: flex;
   height: auto;
   width: 100%;
   justify-content: center;
-
-  }
+}

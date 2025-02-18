@@ -11,8 +11,7 @@ useEffect(() => {
  const fetchData =async ()=>{
     const response = await fetch(url);
     const result = (await response.json())as T;
-    console.log("result fetch hook", result);
-    setData(result);
+       setData(result);
  }
 fetchData();
 }, [url])

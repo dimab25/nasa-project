@@ -14,12 +14,6 @@ import { Card, Image } from "react-bootstrap";
 import { Link } from "react-router";
 
 function About() {
-  fetch("https://api.le-systeme-solaire.net/rest/bodies/")
-    .then((response) => response.json())
-    .then((data) => {
-      const planets = data.bodies.filter((body) => body.isPlanet);
-      console.log(planets);
-    });
 
   return (
     <div className="planetsContainer">

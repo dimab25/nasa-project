@@ -19,6 +19,9 @@ type AuthContextType = {
   register: (email: string, password: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  errorMessage?: string|null;
+  handleSetErrorMessage: (err :string)=> void;
+
 };
 
 // 6. Create variable with the initial value of all the elements we share in our context
@@ -34,13 +37,14 @@ const contextInitialValue: AuthContextType = {
   logout: () => {
     throw new Error("context not initialised");
   },
+  handleSetErrorMessage: ()=> {
+    throw new Error("context not initialised");
+  }
+
 };
 
 // 1. create and export context
 export const AuthContext = createContext<AuthContextType>(contextInitialValue);
-
-
-
 
 // 2. Create and export the provider: a component that contains the states, functions, etc...
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
@@ -50,12 +54,12 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+       await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      const user = userCredential.user;
+   
 
       // console.log("user registered", user);
     } catch (err) {
@@ -66,7 +70,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   };
 
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleSetErrorMessage = (err: string) => setErrorMessage(err)
 
   const login = async (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -80,13 +86,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         } else {
           throw new Error("User information not found");
         }
-        console.log("user login", user);
+        // console.log("user login", user);
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("errorcode", errorCode, "errormessage", errorMessage);
+        
+      
         setErrorMessage(errorCode);
       });
   };
@@ -104,9 +110,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         } else {
           throw new Error("User information not found");
         }
-
-        // console.log("user is logged in", user.email);
-        // console.log("id", id);
+     
       } else {
         // User is signed out
         console.log("user is signed out");
@@ -134,7 +138,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, login, logout, register, errorMessage, setErrorMessage }}
+      value={{ user, login, logout, register, errorMessage, handleSetErrorMessage }}
     >
       {children}
     </AuthContext.Provider>

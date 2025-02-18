@@ -7,7 +7,6 @@ function Saturn() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/saturn"
   );
-  // console.log("data", data);
   return (
     <>
       <div className="singlePlanetContainer">

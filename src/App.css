@@ -35,7 +35,6 @@ img.img-fluid {
 }
 
 button.savedPicture {
-  /* background: linear-gradient(10deg, lightgreen, darkgreen); */
   background-color: transparent;
   margin-left: 1%;
   margin-top: 1%;
@@ -69,20 +68,17 @@ div.show:nth-child(2) {
 }
 
 /* Saved Images Profile Page */
-
 @media screen and (max-width: 449px) {
   .containerMyImages {
     column-count: 2;
     /* width: max; */
   }
 }
-
 @media screen and (min-width: 450px) {
   .containerMyImages {
     column-count: 3;
   }
 }
-
 @media screen and (min-width: 1000px) {
   .containerMyImages {
     column-count: 4;
@@ -98,13 +94,11 @@ div.show:nth-child(2) {
   margin-top: 20px;
   column-gap: 15px;
 }
-
 .containerMyImages img {
   border-radius: 20px;
 }
 
 /* LOGIN */
-
 .loginTextDiv {
   margin-top: 30px;
 }
@@ -132,7 +126,7 @@ div.mb-3 {
 }
 .overlayHome {
   position: absolute;
- width: 94%;
+  width: 94%;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -141,12 +135,11 @@ div.mb-3 {
   text-shadow: 2px 3px black;
   font-weight: 600;
   font-size: 26px;
-text-align: center;
+  text-align: center;
   font-family: "Silkscreen", serif;
   font-weight: 400;
   font-style: normal;
 }
-
 
 @media screen and (max-width: 449px) {
   .overlayHome {
@@ -176,11 +169,10 @@ text-align: center;
 
 .searchBar {
   display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-margin: 10px;
-
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
 }
 
 .homeContainer {
@@ -194,7 +186,7 @@ margin: 10px;
   flex-direction: column;
 
   background-color: rgb(21, 21, 22);
-border-radius: 20px;
+  border-radius: 20px;
   align-items: center;
 }
 .footerDiv img {

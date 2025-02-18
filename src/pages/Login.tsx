@@ -12,14 +12,14 @@ const DelayedLink = () => {
 
     return () => clearTimeout(timeoutId);
   }, []);
-  // console.log(delay);
+
   return <div></div>;
 };
 
 function Login() {
   const { login } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
-  const { errorMessage, setErrorMessage } = useContext(AuthContext);
+  const { errorMessage, handleSetErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,14 +30,13 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  console.log(errorMessage);
   useEffect;
 
   const handleSubmitRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log("email,password", email, password);
     const loginOperation = await login(email, password);
-    setErrorMessage(null);
+    console.log(loginOperation);
+    handleSetErrorMessage("");
 
     // i dont understand that
   };
@@ -77,7 +76,6 @@ function Login() {
             </Button>
           )}
         </Form>
-
 
         <div className="loginTextDiv">
           {errorMessage == "auth/invalid-credential" ? (

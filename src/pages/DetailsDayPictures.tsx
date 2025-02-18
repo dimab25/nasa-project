@@ -18,13 +18,11 @@ function DetailsDayPictures() {
 
   const queryParameters = new URLSearchParams(window.location.search);
   const dateQuery = queryParameters.get("date");
-  console.log(dateQuery);
 
   const api_key = import.meta.env.VITE_NASA_API;
 
   const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${dateQuery}`;
 
-  console.log(nasaUrl);
   const [pictures, setPictures] = useState<Picture | null>(null);
 
   const getPictureOfTheDay = () => {
@@ -35,7 +33,6 @@ function DetailsDayPictures() {
       .then((result) => {
         const pictureOfTheDay = result as Picture;
         setPictures(pictureOfTheDay);
-        console.log("pictues of the day", pictureOfTheDay);
       })
       .catch((error) => {
         console.log("error", error);
@@ -43,7 +40,7 @@ function DetailsDayPictures() {
   };
 
   // ADDING INFORMATION TO THE DB
-  const addInformation = async (imageObject) => {
+  const addInformation = async (imageObject: Picture) => {
     try {
       const imageDate = imageObject.date;
       const imageUrl = imageObject.url;
@@ -55,15 +52,14 @@ function DetailsDayPictures() {
         url: imageUrl,
       });
       console.log("Document written with ID: ", docRef.id);
-      // console.log("db", db);
       // setNewInformation(docRef.id);
       if (docRef) getImageIds();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
-  const handleMark = (props: {}) => {
-    const imageObject = props as string;
+  const handleMark = (props: Picture) => {
+    const imageObject = props;
     console.log("imageDate", imageObject);
 
     addInformation(imageObject);
@@ -71,7 +67,7 @@ function DetailsDayPictures() {
 
   //  GET INFORMATION FROM DB
 
-  const [imageIDs, setImageIDs] = useState<ImageDates[] | null>(null);
+  const [imageIDs, setImageIDs] = useState<ImageDates[]>([]);
 
   const getImageIds = async () => {
     const querySnapshot = await getDocs(collection(db, "likes"));
@@ -91,50 +87,41 @@ function DetailsDayPictures() {
   const savedImagesArrayUndefined = imageIDs?.map((file: ImageDates) => {
     if (user && file.author.includes(user?.email)) return file.date;
   });
-  console.log("", savedImagesArrayUndefined);
-  const savedImagesArray = savedImagesArrayUndefined?.filter(
+  const savedImagesArray = savedImagesArrayUndefined.filter(
     (x) => x !== undefined
   );
-  console.log(savedImagesArray);
 
   // DELETE LIKES
-  const deleteLike = async (props) => {
+  const deleteLike = async (props:string) => {
     await deleteDoc(doc(db, "likes", props));
-    console.log(doc(db, "likes", props));
-    console.log("works bitch");
-    console.log("propsId", props);
+    // console.log(doc(db, "likes", props));
     getImageIds();
   };
 
   // DELETE BUTTON FOR LIKED IMAGES
-  const handleDelete = (props: string | undefined) => {
-    const testX = props as string;
-
-    // console.log("testX is a date string", testX);
+  const handleDelete = (testX: string ) => {
 
     // filter the whole COLLECTION for the LikedImageID
-    const savedIDsArrayUndefined = imageIDs?.map((file: ImageDates) => {
+    const savedIDsArrayUndefined = imageIDs.map((file: ImageDates) => {
       if (user && file.author.includes(user?.email)) return file;
     });
-    // console.log("testingconst", savedIDsArrayUndefined);
-
+   
     const savedIDsArray = savedIDsArrayUndefined?.filter(
       (x) => x !== undefined
     );
-    // console.log("testingconst", savedIDsArray);
+    console.log("savedIDsArray", savedIDsArray);
 
     const singleIdUndefined = savedIDsArray?.map((file) => {
       if (file.date == testX) {
         return file.id;
       }
     });
-    // console.log(singleIdUndefined);
-    const singleID = singleIdUndefined?.filter((x) => x !== undefined);
-    console.log("singleid", singleID);
-    const realSingleID = singleID?.toString();
-    console.log(realSingleID);
 
+    console.log("singleIdUndefined", singleIdUndefined);
+    const singleID = singleIdUndefined.filter((x) => x !== undefined);
+    const realSingleID: string = singleID.toString();
     deleteLike(realSingleID);
+    console.log(" realSingleID", realSingleID);
   };
 
   useEffect(() => {
@@ -145,7 +132,7 @@ function DetailsDayPictures() {
   return (
     <>
       <div className="detailsDayPictures">
-      {pictures && pictures.media_type === "image" ? (
+        {pictures && pictures.media_type === "image" ? (
           <Image
             src={pictures.url}
             alt="Image"
@@ -160,10 +147,9 @@ function DetailsDayPictures() {
             title="YouTube video player"
           ></iframe>
         )}
-       
-        
-        {user ? (
-          savedImagesArray?.includes(pictures?.date) ? (
+
+        {pictures && user ? (
+          savedImagesArray?.includes(pictures.date) ? (
             <>
               <Button
                 className={
@@ -192,7 +178,6 @@ function DetailsDayPictures() {
           )
         ) : null}
 
-        
         <div>{pictures && <p>{pictures.title}</p>}</div>
         {pictures && <p>{pictures.explanation}</p>}
         {pictures && <p>{pictures.date}</p>}

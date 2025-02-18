@@ -11,10 +11,9 @@ function Media() {
   const searchUrl = `https://images-api.nasa.gov/search?q=${keyword}&media_type=image`;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setKeyword(e.target.value);
+        setKeyword(e.target.value);
   };
-  // useEffect hook close to the return
+ 
   useEffect(() => {
     let controller: AbortController;
     const fetchSearchImage = () => {
@@ -28,8 +27,7 @@ function Media() {
           const untypedItems = result.collection.items;
           const definedItems = untypedItems as Item[];
           setItemImages(definedItems);
-          console.log("imageitem", definedItems);
-        })
+                 })
         .catch((error) => {
           console.log("error", error);
         });

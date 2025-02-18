@@ -1,6 +1,5 @@
 import { Timestamp } from "firebase/firestore";
 
-
 export type User = {
     userName?:string;
     id: string;
@@ -145,7 +144,6 @@ export interface Metadata {
   total_hits: number;
 }
 
-
 // Liked PICTURE OF THE DAY 
 export type ImageDates = {
   author: string;
@@ -153,14 +151,3 @@ export type ImageDates = {
    id: string;
    url: string;
 }
-
-// export interface Picture {
-//   copyright: string;
-//   date: string;
-//   explanation: string;
-//   hdurl: string;
-//   media_type: string;
-//   service_version: string;
-//   title: string;
-//   url: string;
-// }

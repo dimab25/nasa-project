@@ -7,7 +7,6 @@ function Jupiter() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/jupiter"
   );
-  // console.log("data", data);
 
   return (
     <>

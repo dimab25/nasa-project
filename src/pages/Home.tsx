@@ -1,13 +1,10 @@
 import { useContext } from "react";
-// import homeImage from "../images/PIA08653.jpg"
 import { AuthContext } from "../context/AuthContext";
 import animation from "../images/animationSpace.mp4";
 import { Link } from "react-router";
 
 function Home() {
-  // Subscribe Home to context
-
-  const { user } = useContext(AuthContext);
+   const { user } = useContext(AuthContext);
 
   return (
     <>

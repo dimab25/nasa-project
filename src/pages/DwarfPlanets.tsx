@@ -6,7 +6,7 @@ import makemake from "../images/makemake.jpg";
 import { Image } from "react-bootstrap";
 
 function DwarfPlanets() {
-  console.log("hallo");
+
   return (
     <>
       <div className="planetsContainer">

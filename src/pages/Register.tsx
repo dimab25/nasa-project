@@ -12,7 +12,7 @@ const DelayedLink = () => {
 
     return () => clearTimeout(timeoutId);
   }, []);
-  // console.log(delay);
+
   return <div></div>;
 };
 
@@ -21,7 +21,7 @@ function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { errorMessage, setErrorMessage } = useContext(AuthContext);
+  const { errorMessage, handleSetErrorMessage } = useContext(AuthContext);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -31,9 +31,8 @@ function Register() {
   };
   const handleSubmitRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log("email,password", email, password);
     register(email, password);
-    setErrorMessage(null);
+    handleSetErrorMessage("");
   };
 
   return (
@@ -72,18 +71,19 @@ function Register() {
             </Button>
           )}
         </Form>
-       
 
-<div className="loginTextDiv">
+        <div className="loginTextDiv">
           {errorMessage == "FirebaseError" ? (
             <div
               style={{
                 background: "red",
                 borderRadius: "20px",
                 width: "max-content",
-                              }}
+              }}
             >
-              {"Oops! That email or password is already taken. Try a different one."}{" "}
+              {
+                "Oops! That email or password is already taken. Try a different one."
+              }{" "}
             </div>
           ) : null}
 
@@ -92,17 +92,16 @@ function Register() {
               <p>You have successfully registered.</p>
               <p>You will be redirected to the home display.</p>
             </>
-          ) : (
-           null
+          ) : null}
+
+          {user ? null : (
+            <Link to={"/login"}>
+              Do you already have an account? Please login here.
+            </Link>
           )}
-          
-          {user? null: <Link to={"/login"}>Do you already have an account? Please login here.</Link>}
           {user && <DelayedLink />}
         </div>
-
       </div>
-
-
     </>
   );
 }

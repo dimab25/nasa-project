@@ -7,8 +7,7 @@ function Neptune() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/neptune"
   );
-  // console.log("data", data);
-  return (
+   return (
     <>
       <div className="singlePlanetContainer">
       <div className="headlinePlanet">

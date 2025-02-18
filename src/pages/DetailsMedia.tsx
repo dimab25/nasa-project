@@ -5,11 +5,9 @@ import { Root } from "../types/customTypes";
 function DetailsMedia() {
   const queryParameters = new URLSearchParams(window.location.search);
   const idQuery = queryParameters.get("id");
-  console.log("idquery", idQuery);
 
   const nasaUrl = `https://images-api.nasa.gov/search?q=${idQuery}`;
 
-  console.log("nasaurl", nasaUrl);
   const [pictures, setPictures] = useState<Root | null>(null);
 
   const getPictureOfTheDay = () => {
@@ -21,7 +19,6 @@ function DetailsMedia() {
         const pictureOfTheDay = result as Root;
 
         setPictures(pictureOfTheDay);
-        console.log("picture", pictureOfTheDay);
       })
       .catch((error) => {
         console.log("error", error);

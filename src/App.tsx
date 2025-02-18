@@ -6,14 +6,10 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import Media from "./pages/Media";
 import { AuthContextProvider } from "./context/AuthContext";
-// import dotenv from 'dotenv';
-// dotenv.config();
-
 import DetailsDayPictures from "./pages/DetailsDayPictures";
 import Register from "./pages/Register";
 
 import Login from "./pages/Login";
-import { db } from "./config/firebaseConfig";
 import Chat from "./pages/Chat";
 import DetailsMedia from "./pages/DetailsMedia";
 import EarthPage from "./pages/Solar-System/Earth";
@@ -37,16 +33,11 @@ const Root = () => {
       <NavBar />
       <Outlet />
       <Footer />
-
     </>
   );
 };
 
 function App() {
-  // console.log("auth", auth);
-  // console.log(app);
-  console.log("dbase", db);
-
   return (
     <>
       <AuthContextProvider>
@@ -70,7 +61,14 @@ function App() {
               <Route path="/venus" element={<Venus />} />
               <Route path="/dwarf" element={<DwarfPlanets />} />
 
-              <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+              <Route
+                path="/chat"
+                element={
+                  <ProtectedRoute>
+                    <Chat />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/detailsDayPicture"
                 element={<DetailsDayPictures />}
@@ -78,7 +76,14 @@ function App() {
               <Route path="/detailsMedia" element={<DetailsMedia />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/*" element={<ErrorPage />} />
             </Route>
           </Routes>
