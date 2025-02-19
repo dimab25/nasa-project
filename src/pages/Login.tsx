@@ -68,6 +68,10 @@ function Login() {
               onChange={handlePasswordChange}
               value={password}
             />
+           {user? null:
+              <Form.Text className="text-muted">
+              The password has to be minimum 6 characters long!{" "}
+            </Form.Text> }
           </Form.Group>
 
           {user ? null : (

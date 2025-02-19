@@ -29,6 +29,7 @@ function Home() {
         )}
 
         <video
+        playsInline
           className="animation"
           src={animation}
           autoPlay

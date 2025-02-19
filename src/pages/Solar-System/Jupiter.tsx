@@ -2,15 +2,30 @@ import { Link } from "react-router";
 import useFetchHook from "../../hooks/useFetchHook";
 import { Bodies } from "../../types/customTypes";
 import { Button } from "react-bootstrap";
+import { useEffect, useRef } from "react";
+
 
 function Jupiter() {
   const { data } = useFetchHook<Bodies>(
     "https://api.le-systeme-solaire.net/rest/bodies/jupiter"
   );
+  const topElement = useRef<HTMLDivElement | null>(null)
+    useEffect(() => {
+        
+        if (topElement) {
+           topElement.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+        }
+       
+      }, []);
 
   return (
     <>
-      <div className="singlePlanetContainer">
+
+      <div className="singlePlanetContainer" ref={topElement}>
       <div className="headlinePlanet">
           <Link to={`/earth`}>
           <Button variant="outline-success"  >{"<"} </Button>

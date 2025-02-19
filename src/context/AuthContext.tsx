@@ -66,6 +66,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const error = err as Error;
       const errorCode = error.name;
       console.log("error", error.name);
+ 
       setErrorMessage(errorCode);
     }
   };

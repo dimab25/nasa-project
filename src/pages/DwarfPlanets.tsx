@@ -4,12 +4,29 @@ import pluto from "../images/pluto.jpg";
 import haumea from "../images/haumea.jpg";
 import makemake from "../images/makemake.jpg";
 import { Image } from "react-bootstrap";
+import { useEffect, useRef } from "react";
+
 
 function DwarfPlanets() {
 
+  const topElement = useRef<HTMLDivElement | null>(null)
+      useEffect(() => {
+          
+          if (topElement) {
+             topElement.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+          }
+         
+        }, []);
+  
   return (
     <>
-      <div className="planetsContainer">
+    
+    
+      <div className="planetsContainer" ref={topElement}>
         <h5>Dwarf Planets</h5>
 
         <div className="sunDiv">

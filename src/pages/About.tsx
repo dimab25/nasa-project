@@ -13,7 +13,10 @@ import dwarf from "../images/dwarf-planets.webp";
 import { Card, Image } from "react-bootstrap";
 import { Link } from "react-router";
 
+
 function About() {
+
+ 
 
   return (
     <div className="planetsContainer">
@@ -57,6 +60,7 @@ function About() {
         <div className="containerAbout">
           <Card className="eachPlanetDiv">
             <Link to={`/earth`}>
+        
               <Card.Img
                 className="planetImages"
                 variant="top"
