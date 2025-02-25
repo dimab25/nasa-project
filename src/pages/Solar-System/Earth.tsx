@@ -13,16 +13,20 @@ function EarthPage() {
   const topElement = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
       
+    
       if (topElement) {
          topElement.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'nearest',
+        
       });
+     
       }
      
     }, []);
 
+    console.log('topElement.current :>> ', topElement.current);
   return (
     <>
     

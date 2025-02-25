@@ -92,11 +92,13 @@ function NavBar() {
               {user ? (
                 <NavDropdown.Item onClick={logout}>Sign out</NavDropdown.Item>
               ) : null}
-              {user ? (
-                <>
-                  <NavDropdown.Item as={Link} to={"/chat"}>
+
+<NavDropdown.Item as={Link} to={"/chat"}>
               Chat
             </NavDropdown.Item>
+              {user ? (
+                <>
+                 
                   <NavDropdown.Divider />
                   <Navbar.Text>User: {user.email}</Navbar.Text>
                 </>

@@ -12,13 +12,17 @@ function Jupiter() {
   const topElement = useRef<HTMLDivElement | null>(null)
     useEffect(() => {
         
-        if (topElement) {
-           topElement.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
-        }
+      if (topElement) {
+        topElement.current?.scrollIntoView({
+       behavior: 'smooth',
+       block: 'start',
+       inline: 'nearest',
+     
+       
+     });
+     
+  
+     }
        
       }, []);
 

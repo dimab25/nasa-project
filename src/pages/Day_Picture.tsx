@@ -14,7 +14,7 @@ function Day_Picture() {
   const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${choosenDate}`;
 
   const [pictures, setPictures] = useState<Picture | null>(null);
-  console.log(nasaUrl);
+ 
   const getPictureOfTheDay = () => {
     fetch(nasaUrl)
       .then((response) => {

@@ -16,7 +16,7 @@ function Home() {
             <p>to Uniscope.</p>
             <p>Ready to explore?</p>
             <Link to={"/about"}>
-            <button>Klick here</button></Link>
+            <button>Click here</button></Link>
           </div>
         ) : (
           <div className="overlayHome">
@@ -24,7 +24,7 @@ function Home() {
 
             <p>Ready to explore?</p>
             <Link to={"/about"}>
-            <button>Klick here</button></Link>
+            <button>Click here</button></Link>
           </div>
         )}
 
